@@ -15,28 +15,70 @@
 
 %----------------------------------------------------------------------------------------
 
-…
+Dieses Referat beschäftigt sich mit den zwischen objektorientierten Anwendungen und relationalen Datenbanken auftretenden Problemen. Es geht speziell auf das Object-Relational Mapping (ORM) ein und stellt im weiteren Verlauf 3 objektrationale Mapper genauer vor.
 
 \section{Hintergrund und Problemstellung}
 
-…
+Bei der großen Mehrheit der heute im Einsatz befindlichen Datenbanken handelt es sich, um relationalen Datenbanksysteme.  Dies liegt mit unter daran, dass relationale Datenbanken an sich, ein sehr einfaches Datenmodell verwenden, was bei normalisierten Modellen Datenkonsistenz gewährleistet. Weiter sind hier, da jedes Objekt in Einzelteile zerlegt wird und die Daten mengenorientiert verarbeitet zu können, Abfragen auf große Datenmengen möglich.
+Für Entwickler von Anwendungsprogrammen auf der anderen Seite sind objektorientierte Programmiersprachen, wie z.B. C++, Java und Python, von großer Bedeutung. 
+Bei der objektorientierten Programmierung (OOP) werden Daten und Verhalten in Objekte gekapselt und jedes Objekt besitzt eine eindeutige Identität. Im Gegensatz zum Konzept der Datenkapselung bei objektorientierten Programmiersprachen basieren relationale Datenbanken auf der relationalen Algebra. Diese beiden Paradigmen eignen sich sehr gut, die Probleme auf ihrem Gebiet zu lösen, unterscheiden sich aber grundlegend in der Denkweise, der Methodik und im Design. Diese Widerspruche führen zu einer Unverträglichkeit zwischen den Systemen, Object-relational Impedance Mismatch (kurz: Impedance Mismatch, IM) genannt.
+Um Objekte einer objektorientierten Anwendung in einer Datenbank speichern zu können, müssen folgende Teilprobleme betrachtet werden:
+
+\paragraph{Speichern der Struktur einer Klasse} \hspace{0pt} \\
+Die Klasse definiert die Methoden und Eigenschaften des Objektes und kann sich in einer Klassenhierarchie befinden. Im relationalen Schema sind Klassen nicht enthalten und können deshalb nicht natürlich abgebildet werden.
+
+\paragraph{Speichern des Zustandes eines Objektes} \hspace{0pt} \\
+Eine Objektinstanz kann in der Applikation mehrere Zustände annehmen und wird von Methoden von einem in den nächsten überführt. Der Zustand des Objektes muss im relationalen Schema dargestellt werden.
+
+\paragraph{Speichern von Beziehungen zwischen Objekten} \hspace{0pt} \\
+Im objektorientierten Model haben Objektinstanzen die Möglichkeit untereinander Daten auszutauschen. Objekte bestehen nicht nur allein sondern sind mit anderen Objekten gekoppelt (Assoziation), aus weiteren Objekten zusammengesetzt (Komposition) oder beinhalten Objekte (Aggregation). Diese Objektbeziehungen müssen im persistenten Datenspeicher festgehalten werden, denn auch sie bestimmen den Zustand eines Objektes.
+
+\paragraph{Speichern von Klassenhierarchien (Vererbung)} \hspace{0pt} \\
+Objektorientierte Modelle haben keine flachen Hierarchien. Klassen stehen durch das Prinzip der Vererbung in einer hierarchischen Beziehung zueinander. Im relationalen Schema ist es nicht vorgesehen Vererbung natürlich zu modellieren.
+
+\paragraph{Abfrage von Objekten} \hspace{0pt} \\Mit einem RDMBS können komplexe Abfragen einfach gestellt und effizient bearbeitet werden. Diese Abfragen beziehen sich meist auf eine Menge von Objekten mit bestimmten Kriterien. Der Zugriff auf die Objekte wird also über Mengen erreicht. Im objektorientierten Model geschieht der Zugriff über die Navigation von Objektbeziehungen. Eine Gesamtsicht auf alle Objekte oder das Bilden von konkreten Mengen von Objekten ist schwierig, da immer Pfade von Beziehungen analysiert werden müssen.
+
+\paragraph{Marshalling von Objekten} \hspace{0pt} \\
+Das Marshalling bezeichnet den Vorgang aus einem Abfrageergebnis eine Menge von konkreten Objektinstanzen zu erstellen, die in der Applikation verwendet werden. ... Ein Objekt kann eine beliebige Struktur haben, aber ein Abfrageergebnis ist immer ein einfaches Tupel.
+
+\hspace{1pt}
+
+\noindent 
+Aus den oben beschriebenen Problemen können Anforderungen/Eigenschaften abgeleitet werden, welche berücksichtigt werden müssen, um für das Problem des Impedance Mismatch mögliche Lösungsansätze zu bestimmen:
+
+\paragraph{Structure} \hspace{0pt} \\
+Eine Klasse hat eine beliebige Struktur und eine beliebiges Verhalten definiert durch Methoden. Diese Struktur muss abgebildet werden.
+
+\paragraph{Instance} \hspace{0pt} \\
+Der Objektzustand muss abgebildet werden.
+\paragraph{Encapsulation} \hspace{0pt} \\
+Auf ein Objekt wird über Methoden zugegriffen. Es kapselt sein Verhalten durch diese Methoden und wird somit nicht von außen definiert. Daten in der Datenbank haben keine Methoden und sind von überall modifizierbar. 
+
+\paragraph{Identity} \hspace{0pt} \\
+Ein Objekt muss eine eigene Identität haben, die in beiden Modellen eindeutig ist (Objektidentität kurz OID). 
+
+\paragraph{Processing Model} \hspace{0pt} \\
+Der Zugriff auf Objekte innerhalb des objektorientierten Models geschieht über Pfade bestehend aus Objekten. Im relationalen Modell wird auf Objekte (bzw. Daten) in Mengen zugegriffen. 
+
+\paragraph{Ownership} \hspace{0pt} \\
+Das objektorientierte Model der Applikation wird vom Entwicklerteam der Software verwaltet. Das Datenbankschema vom Datenbankadministrator. Das Datenbankschema kann nicht nur von einer einzelnen Applikation benutzt werden, sondern von mehreren. 
 
 \section{Lösungsansätze}
 
-…
+Um das Problem des Impedance Mismatch zu lösen gibt es verschiedene Ansätze. Allerdings löst keiner dieser Ansätze das Problem vollständig, ohne das es zu Einschränkungen in den Bereichen Wartbarkeit, Performance und Verständlichkeit kommt.
 
 \subsection{Objektorientierte Datenbanken}
 
-…
+Rein intuitiv ist das Ersetzen der vorhandenen relationalen Datenbank durch eine objektorientierte Datenbank naheliegend. Die Verträglichkeit zwischen objektorientierten Anwendungen und der Datenbank bezüglich der Kommunikation untereinander ist einleuchtend. Allerdings können sich auch Schwierigkeiten ergeben, die Abfrage großer Datenmengen z.B. kann sehr kompliziert werden. Weiter werden die Daten fest mit dem Objekt verdrahtet und können nicht ohne die spezielle Anwendung sichtbar gemacht werden. 
 
 \subsection{Objekt-relationale Datenbanken}
 
-…
+Hierbei handelt es sich um Erweiterung vorhandener RDBMS um objektrelationale Features. Das Problem des Impedance Mismatch wird so weitgehend umgangen, Mapping kann aber trotzdem von Nöten sein.
 
 \subsection{Programmierspache um relationale Funktionalitäten erweitern}
 
-…
+Relationale Unterstützung der verwendeten Sprache (z.B. Embedded SQL). Mapping wird überflüssig, aber die Verwendung von Objekten wird meist eingeschränkt.
 
 \subsection{Objekt-relationale Mapper}
 
-…
+Beim OR-Mapping sprechen wir davon „einen Prozess zu finden, um ein Objektmodell auf ein relationales Datenmodell abzubilden“  , auch objektrationale Abbildung genannt. OR-Mapper arbeiten als Mittler zwischen der Anwendung und der relationalen Datenbank.
