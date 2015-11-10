@@ -6,6 +6,7 @@ Sequelize ist ein objektrelationaler Mapper, der im Rahmen einer Masterarbeit vo
 \paragraph{Relationale Zugriffsschicht} \hspace{0pt} \\
 Sequelize bedient sich des Entwurfsmusters des Data Access Object (DAO). Dies beschreibt die Nutzung spezieller Klassen zum Zugriff auf Datenquellen. Die Klassen definieren dabei die zum einen die Schnittstellen zwischen den Daten und der Geschäftslogik. So kann sichergestellt werden, dass die Schnittstellen selbst beim Austausch des Datenbanksystems (also der Datenquelle) existent und konsistent bleiben (\cite[S. 8]{Depo1}). Aufgabe des DAO ist es unter anderem, die Datenquelle (Datenbank) abzufragen, die Ergebnisse entgegenzunehmen und sie in ein entsprechendes Datenobjekt (Data Transfer Object, DTO) zu konvertieren.
 
+\hspace{1pt}
 \begin{lstlisting}[caption=Relationale Zugriffsschicht]
 class StudentDAO
   def self.all
@@ -29,9 +30,9 @@ end
 
 
 \paragraph{Objektrelationale Zugriffsschicht} \hspace{0pt} \\
-
 Diese Schicht ermöglicht das Arbeiten mit den nun nicht mehr repräsentativen Geschäftsobjekten. Dadurch wird die Manipulation dieser Objekte ermöglicht. Außerdem können nur weitere Features wie z.B. Assoziationen oder Berechtigungen implementiert werden. Auch das Löschen von Datensätzen ist nun möglich.
 
+\hspace{1pt}
 \begin{lstlisting}[caption=Objektrelationale Zugriffsschicht]
 class StudentDAO
   def self.all
@@ -61,7 +62,7 @@ class StudentController
 end
 \end{lstlisting}
 
-Um doppelten Code zu vermeiden, sollte die Architektur jedoch leicht abgeändert werden. So wird die DAO- bzw. Datenobjekt-Logik in eine Oberklasse ausgelagert und entsprechende Vererbung eingeführt (\cite[S. 11]{Depo1}).
+\noindent Um doppelten Code zu vermeiden, sollte die Architektur jedoch leicht abgeändert werden. So wird die DAO- bzw. Datenobjekt-Logik in eine Oberklasse ausgelagert und entsprechende Vererbung eingeführt (\cite[S. 11]{Depo1}).
 
 
 \subsection{Architektur}
@@ -79,7 +80,6 @@ Instanzen der DAO-Klasse spiegeln einzelne Datenbankeinträge wieder. Sie werden
 \subsection{Benutzung}
 
 \paragraph{Klassendefinition} \hspace{0pt} \\
-
 Sequelize verfolgt den Modell- und den Schemagetriebenen Ansatz zur Definition von Modellen. Dies hat zur Folge, dass alle Models vorher definiert werden müssen.
 
 \begin{lstlisting}[caption=Klassendefinition (Sequelize)]
@@ -89,11 +89,10 @@ var Student = sequelize.define('student', {
 });	
 \end{lstlisting}
 
-Die Spalten `id`, `created\_at` und `updated\_at` müssen nicht definiert werden, diese werden von Sequelize automatisch erzeugt.
+\noindent Die Spalten `id`, `created\_at` und `updated\_at` müssen nicht definiert werden, diese werden von Sequelize automatisch erzeugt.
 
 
 \paragraph{Datensatz abfragen} \hspace{0pt} \\
-
 Sequelize stellt in der Klasse DAOFactory mehrere Methoden bereit, mit denen sich Daten aus Tabellen auslesen lassen, z.B. `find()`, `findAll()` und `count()`. Über Optionen wie z.B. `where`, `limit` oder `offset` können die Suchen jeweils angepasst werden.
 
 \begin{lstlisting}[caption=Datensatz abfragen (Sequelize)]
@@ -112,7 +111,6 @@ Student.find({
 
 
 \paragraph{Datensatz anlegen} \hspace{0pt} \\
-
 Die Methoden `DAOFactory.build()` und `DAOFactory.create()` ermöglichen es, sowohl temporäre als auch persistente Datenbankeinträge zu erstellen. Mit `DAO.save()` wird der temporäre, ungespeicherte Eintrag in der Datenbank gespeichert.
 
 \begin{lstlisting}[caption=Datensatz anlegen (Sequelize)]
@@ -155,7 +153,7 @@ Nach dem definieren von Models ist es mit Sequelize möglich, Assoziationen zu d
 	StudyCourse.belongsTo(StudyCourse);
 \end{lstlisting}
 
-Diese Definition würde nun zur Tabelle `student` den Foreign-Key `studyCourseId` hinzufügen, um die 1:m-Beziehung abbilden zu können.
+\noindent Diese Definition würde nun zur Tabelle `student` den Foreign-Key `studyCourseId` hinzufügen, um die 1:m-Beziehung abbilden zu können.
 
 
 
