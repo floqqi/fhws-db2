@@ -21,9 +21,16 @@ SQLAlchemy besteht aus zwei alleinstehenden Komponenten: Dem Core und dem ORM.
 
 \paragraph{Core} \hspace{0pt} \\Der Core ist ein Abstraktionslayer für verschiedene Datenbank-API-Implementierungen, welcher es erlaubt SQL-Abfragen über eine allgemeine Syntax in Python zu schreiben ("`SQL Expression Language"').
 
-% Beispiel
+\begin{lstlisting}[language=Python]
+select([Student.id, Student.martrikelnr])
+.where(Student.name == 'Peter')
+.order_by(Student.name)
+\end{lstlisting}
 
-Außerdem bietet er die Möglichkeit jeden Datentyp von Python auf einen SQL-Datentypen zu „mappen“.
+\hspace{0pt}
+
+\noindent
+Außerdem bietet er die Möglichkeit jeden Datentyp von Python auf einen SQL-Datentypen zu "`mappen"'. Ein Beispiel hierfür wäre der Datentyp \textit{Decimal} in Python; dieser wird auf \textit{NUMERIC} in PostgreSQL und \textit{DECIMAL} auf SQL Server konvertiert. Dies hat den Vorteil, dass man mit dem nativen Datentypen der Programmiersprache Python arbeiten kann und sich nicht explizit darum kümmmern muss, welcher Datentyp in der Datenbank hierfür verwendet wird.
 
 \paragraph{ORM} \hspace{0pt} \\
 Der ORM (Objekt-relationale Mapper) ermöglicht das klassische „Mappen“ von Datenbank-Tabellen auf Objekte. Er erlaubt nicht nur das Mapping auf einzelne Tabellen, sondern ermöglicht auch Objektorientierte Paradigmen wie Vererbung. Referenzierungen über Fremdschlüssel sind ebenfalls möglich.
