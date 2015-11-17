@@ -25,21 +25,21 @@ Bei der großen Mehrheit der heute im Einsatz befindlichen Datenbanken handelt e
 Um Objekte einer objektorientierten Anwendung in einer Datenbank speichern zu können, müssen folgende Teilprobleme betrachtet werden:
 
 \paragraph{Speichern der Struktur einer Klasse} \hspace{0pt} \\
-Die Klasse definiert die Methoden und Eigenschaften des Objektes und kann sich in einer Klassenhierarchie befinden. Im relationalen Schema sind Klassen nicht enthalten und können deshalb nicht natürlich abgebildet werden.
+Die Klasse definiert die Methoden und Eigenschaften des Objektes und kann sich in einer Klassenhierarchie befinden. Im relationalen Schema sind Klassen nicht enthalten und können deshalb nicht natürlich abgebildet werden. (\cite[S. 4]{Sche1})
 
 \paragraph{Speichern des Zustandes eines Objektes} \hspace{0pt} \\
-Eine Objektinstanz kann in der Applikation mehrere Zustände annehmen und wird von Methoden von einem in den nächsten überführt. Der Zustand des Objektes muss im relationalen Schema dargestellt werden.
+Eine Objektinstanz kann in der Applikation mehrere Zustände annehmen und wird von Methoden von einem in den nächsten überführt. Der Zustand des Objektes muss im relationalen Schema dargestellt werden. (\cite[S. 4]{Sche1})
 
 \paragraph{Speichern von Beziehungen zwischen Objekten} \hspace{0pt} \\
-Im objektorientierten Model haben Objektinstanzen die Möglichkeit untereinander Daten auszutauschen. Objekte bestehen nicht nur allein sondern sind mit anderen Objekten gekoppelt (Assoziation), aus weiteren Objekten zusammengesetzt (Komposition) oder beinhalten Objekte (Aggregation). Diese Objektbeziehungen müssen im persistenten Datenspeicher festgehalten werden, denn auch sie bestimmen den Zustand eines Objektes.
+Im objektorientierten Model haben Objektinstanzen die Möglichkeit untereinander Daten auszutauschen. Objekte bestehen nicht nur allein sondern sind mit anderen Objekten gekoppelt (Assoziation), aus weiteren Objekten zusammengesetzt (Komposition) oder beinhalten Objekte (Aggregation). Diese Objektbeziehungen müssen im persistenten Datenspeicher festgehalten werden, denn auch sie bestimmen den Zustand eines Objektes. (\cite[S. 4]{Sche1})
 
 \paragraph{Speichern von Klassenhierarchien (Vererbung)} \hspace{0pt} \\
-Objektorientierte Modelle haben keine flachen Hierarchien. Klassen stehen durch das Prinzip der Vererbung in einer hierarchischen Beziehung zueinander. Im relationalen Schema ist es nicht vorgesehen Vererbung natürlich zu modellieren.
+Objektorientierte Modelle haben keine flachen Hierarchien. Klassen stehen durch das Prinzip der Vererbung in einer hierarchischen Beziehung zueinander. Im relationalen Schema ist es nicht vorgesehen Vererbung natürlich zu modellieren. (\cite[S. 4]{Sche1})
 
-\paragraph{Abfrage von Objekten} \hspace{0pt} \\Mit einem RDMBS können komplexe Abfragen einfach gestellt und effizient bearbeitet werden. Diese Abfragen beziehen sich meist auf eine Menge von Objekten mit bestimmten Kriterien. Der Zugriff auf die Objekte wird also über Mengen erreicht. Im objektorientierten Model geschieht der Zugriff über die Navigation von Objektbeziehungen. Eine Gesamtsicht auf alle Objekte oder das Bilden von konkreten Mengen von Objekten ist schwierig, da immer Pfade von Beziehungen analysiert werden müssen.
+\paragraph{Abfrage von Objekten} \hspace{0pt} \\Mit einem RDMBS können komplexe Abfragen einfach gestellt und effizient bearbeitet werden. Diese Abfragen beziehen sich meist auf eine Menge von Objekten mit bestimmten Kriterien. Der Zugriff auf die Objekte wird also über Mengen erreicht. Im objektorientierten Model geschieht der Zugriff über die Navigation von Objektbeziehungen. Eine Gesamtsicht auf alle Objekte oder das Bilden von konkreten Mengen von Objekten ist schwierig, da immer Pfade von Beziehungen analysiert werden müssen. (\cite[S. 4]{Sche1})
 
 \paragraph{Marshalling von Objekten} \hspace{0pt} \\
-Das Marshalling bezeichnet den Vorgang aus einem Abfrageergebnis eine Menge von konkreten Objektinstanzen zu erstellen, die in der Applikation verwendet werden. ... Ein Objekt kann eine beliebige Struktur haben, aber ein Abfrageergebnis ist immer ein einfaches Tupel.
+Das Marshalling bezeichnet den Vorgang aus einem Abfrageergebnis eine Menge von konkreten Objektinstanzen zu erstellen, die in der Applikation verwendet werden. ... Ein Objekt kann eine beliebige Struktur haben, aber ein Abfrageergebnis ist immer ein einfaches Tupel. (\cite[S. 4]{Sche1})
 
 \hspace{1pt}
 
@@ -47,21 +47,21 @@ Das Marshalling bezeichnet den Vorgang aus einem Abfrageergebnis eine Menge von 
 Aus den oben beschriebenen Problemen können Anforderungen/Eigenschaften abgeleitet werden, welche berücksichtigt werden müssen, um für das Problem des Impedance Mismatch mögliche Lösungsansätze zu bestimmen:
 
 \paragraph{Structure} \hspace{0pt} \\
-Eine Klasse hat eine beliebige Struktur und eine beliebiges Verhalten definiert durch Methoden. Diese Struktur muss abgebildet werden.
+Eine Klasse hat eine beliebige Struktur und eine beliebiges Verhalten definiert durch Methoden. Diese Struktur muss abgebildet werden. (\cite[S. 4]{Sche1})
 
 \paragraph{Instance} \hspace{0pt} \\
-Der Objektzustand muss abgebildet werden.
+Der Objektzustand muss abgebildet werden. (\cite[S. 4]{Sche1})
 \paragraph{Encapsulation} \hspace{0pt} \\
-Auf ein Objekt wird über Methoden zugegriffen. Es kapselt sein Verhalten durch diese Methoden und wird somit nicht von außen definiert. Daten in der Datenbank haben keine Methoden und sind von überall modifizierbar. 
+Auf ein Objekt wird über Methoden zugegriffen. Es kapselt sein Verhalten durch diese Methoden und wird somit nicht von außen definiert. Daten in der Datenbank haben keine Methoden und sind von überall modifizierbar.  (\cite[S. 4]{Sche1})
 
 \paragraph{Identity} \hspace{0pt} \\
-Ein Objekt muss eine eigene Identität haben, die in beiden Modellen eindeutig ist (Objektidentität kurz OID). 
+Ein Objekt muss eine eigene Identität haben, die in beiden Modellen eindeutig ist (Objektidentität kurz OID).  (\cite[S. 4]{Sche1})
 
 \paragraph{Processing Model} \hspace{0pt} \\
-Der Zugriff auf Objekte innerhalb des objektorientierten Models geschieht über Pfade bestehend aus Objekten. Im relationalen Modell wird auf Objekte (bzw. Daten) in Mengen zugegriffen. 
+Der Zugriff auf Objekte innerhalb des objektorientierten Models geschieht über Pfade bestehend aus Objekten. Im relationalen Modell wird auf Objekte (bzw. Daten) in Mengen zugegriffen.  (\cite[S. 4]{Sche1})
 
 \paragraph{Ownership} \hspace{0pt} \\
-Das objektorientierte Model der Applikation wird vom Entwicklerteam der Software verwaltet. Das Datenbankschema vom Datenbankadministrator. Das Datenbankschema kann nicht nur von einer einzelnen Applikation benutzt werden, sondern von mehreren. 
+Das objektorientierte Model der Applikation wird vom Entwicklerteam der Software verwaltet. Das Datenbankschema vom Datenbankadministrator. Das Datenbankschema kann nicht nur von einer einzelnen Applikation benutzt werden, sondern von mehreren.  (\cite[S. 4]{Sche1})
 
 \section{Lösungsansätze}
 
@@ -81,4 +81,4 @@ Relationale Unterstützung der verwendeten Sprache (z.B. Embedded SQL). Mapping 
 
 \subsection{Objekt-relationale Mapper}
 
-Beim OR-Mapping sprechen wir davon „einen Prozess zu finden, um ein Objektmodell auf ein relationales Datenmodell abzubilden“  , auch objektrationale Abbildung genannt. OR-Mapper arbeiten als Mittler zwischen der Anwendung und der relationalen Datenbank.
+Beim OR-Mapping sprechen wir davon „einen Prozess zu finden, um ein Objektmodell auf ein relationales Datenmodell abzubilden“  (\cite[S. 280]{Piep1})  , auch objektrationale Abbildung genannt. OR-Mapper arbeiten als Mittler zwischen der Anwendung und der relationalen Datenbank.
