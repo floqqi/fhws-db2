@@ -1,9 +1,9 @@
-SQLAlchemy\footnote{\href{http://www.sqlalchemy.org/}{http://www.sqlalchemy.org/}} ist ein Objekt-relationaler Mapper für die Programmiersprache Python. Das Framework wurde im Februar 2006 von Michael Bayer unter der MIT Lizenz – als Open Source – veröffentlicht. Seitdem gewann es an sehr großer Beliebtheit, vor allem in der Open Source Welt, aber auch bei großen und bekannten Firmen\footnote{\href{http://www.sqlalchemy.org/organizations.html}{http://www.sqlalchemy.org/organizations.html}} wie Dropbox, Hulu oder Uber.
+SQLAlchemy ist ein Objekt-relationaler Mapper für die Programmiersprache Python. Das Framework wurde im Februar 2006 von Michael Bayer unter der MIT Lizenz – als Open Source – veröffentlicht. Seitdem gewann es an sehr großer Beliebtheit, vor allem in der Open Source Welt, aber auch bei großen und bekannten Firmen (\cite[Organizations]{SQLA1}) wie Dropbox, Hulu oder Uber.
 
 \subsection{Allgemein}
 
 \paragraph{Philosophie} \hspace{0pt} \\
-SQL databases behave less like object collections the more size and performance start to matter; object collections behave less like tables and rows the more abstraction starts to matter. SQLAlchemy aims to accommodate both of these principles.
+SQL databases behave less like object collections the more size and performance start to matter; object collections behave less like tables and rows the more abstraction starts to matter. SQLAlchemy aims to accommodate both of these principles. (\cite[Philosophy]{SQLA1})
 
 \paragraph{Unterstützte Datenbanken (Dialekte)} \hspace{0pt} \\
 \begin{itemize}
@@ -12,9 +12,10 @@ SQL databases behave less like object collections the more size and performance 
 	\item PostgreSQL
 	\item Oracle
 	\item Microsoft SQL Server
+	\item …
 \end{itemize}
 
-Es ist außerdem relativ einfach einen weiteren Dialekt in SQLAlchemy zu integrieren. SAP hat dies zum Beispiel für seine HANA-Datenbank realisiert\footnote{\href{https://github.com/SAP/sqlalchemy-hana}{https://github.com/SAP/sqlalchemy-hana}}.
+Es ist außerdem relativ einfach einen weiteren Dialekt in SQLAlchemy zu integrieren. SAP hat dies zum Beispiel für seine HANA-Datenbank realisiert (\cite[SQLAlchemy-Hana]{GitH1}).
 
 \subsection{Komponenten}
 SQLAlchemy besteht aus zwei alleinstehenden Komponenten: Dem Core und dem ORM.
@@ -54,8 +55,8 @@ Das Anlegen eines neuen Datensatzes sieht nun folgendermaßen aus:
 studiengang = Studiengang()studiengang.name = 'Informatik'student = Student()student.name = 'Peter'student.studiengang = studiengangsession.add(student)session.commit()
 \end{lstlisting}
 
-Die INSERT-Statements werden nun mithilfe der "`Unit of Work"'\footnote{Vgl. Essential SQLAlchemy, S. 94f} in der richtigen Reihenfolge ausgeführt, sowie die Fremdschlüsselreferenz von \textit{student.studiengang\_id} automatisch aufgelöst.
+Die INSERT-Statements werden nun mithilfe der "`Unit of Work"' (\cite[S. 94--95]{Cope1}) in der richtigen Reihenfolge ausgeführt, sowie die Fremdschlüsselreferenz von \textit{student.studiengang\_id} automatisch aufgelöst.
 
 \subsection{Unit of Work}
-Die Unit of Work ist ein integraler Bestandteil von SQLAlchemy’s ORM-Erweiterung. Diese folgt dem "`Unit of Work"'-Pattern von Martin Fowler\footnote{\href{http://martinfowler.com/eaaCatalog/unitOfWork.html}{http://martinfowler.com/eaaCatalog/unitOfWork.html}}, welches bspw. auch von Hibernate (Java’s populärster ORM) genutzt wird.
+Die Unit of Work ist ein integraler Bestandteil von SQLAlchemy’s ORM-Erweiterung. Diese folgt dem "`Unit of Work"'-Pattern von Martin Fowler (\cite{Fowl1}), welches bspw. auch von Hibernate (Java’s populärster ORM) genutzt wird.
 Änderungen an Objekte werden beim Unit of Work-System nicht direkt in die Datenbank geschrieben, sondern gesammelt in einer Transaktion abgeschickt. Hierfür wird eine topologische Sortierung nach Abhängigkeiten durchgeführt, um z. B. Fremdschüsselreferenzen (siehe o. g. Beispiel) aufzulösen. Diese System hat außerdem den Vorteil, dass redundante Anfragen gebündelt und Deadlocks vermieden werden können.
