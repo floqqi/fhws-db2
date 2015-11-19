@@ -1,7 +1,7 @@
 Hibernate ist ein ORM-Framework für Java, dessen Hauptaufgabe die objektrelationale Abbildung ist. Dies ermöglicht Klassen, Objekte und Attribute in relationalen Datenbaken zu speichern und auszulesen, dabei gilt:
 
 \begin{itemize}
-	\item Jede Klasse entspricht eine Tabelle.
+	\item Jede Klasse entspricht eine Tabelle. (\cite{Max1})
 	\item Jedes Objekt entspricht einem Datensatz.
 	\item Jedes Attribut entspricht einer Spalte.
 \end{itemize}
@@ -79,7 +79,6 @@ public class StudentDAO {
 	
 	public StudentDAO() {} 
 
-	
 	public Session openSessionAndTransaction() {
 		session = HibernateUtil.getSessionFactory().getCurrentSession();
 		transaction = session.beginTransaction();
@@ -90,7 +89,6 @@ public class StudentDAO {
 		transaction.commit();
 		session.close();
 	}
-
 	
 	public Session getSession(){
 		return session;
