@@ -1,10 +1,11 @@
 Hibernate ist ein ORM-Framework für Java, dessen Hauptaufgabe die objektrelationale Abbildung ist. Dies ermöglicht Klassen, Objekte und Attribute in relationalen Datenbaken zu speichern und auszulesen, dabei gilt:
 
 \begin{itemize}
-	\item Jede Klasse entspricht eine Tabelle. (\cite{Max1})
-	\item Jedes Objekt entspricht einem Datensatz.
+	\item Jede Klasse entspricht eine Tabelle
+	\item Jedes Objekt entspricht einem Datensatz
 	\item Jedes Attribut entspricht einer Spalte.
 \end{itemize}
+(\cite[S. 280]{Piep1})
 
 \subsection{Grundlagen}
 
@@ -13,7 +14,7 @@ Um ein Tabelle aus einer Java Klasse zu erstellen muss das SQL Statement aus ein
 
 \subsection{Hibernate Konventionen}
 
-Um ein Java-Objekt mittels Hibernate in einer relationalen Datenbank persistent zu verwalten, muss die Klasse des Objektes einige grundlegende Notationen befolgen. Zunächst muss die Klasse mit der Annotation @Entity versehen werden damit sie in Datenbank gemappt werden kann. „Die Annotation @Entity macht aus einer „normalen“ Klasse eine Klasse, deren Instanzen mit einer JPA-Implementierung persistent gemacht werden können.“(Java-Persistence-API mit Hibernate S.32 Z. 1-2) Welche Spalte der Primärschlüssel sein soll muss angegeben werden. Dies geschieht mit der Annotation @Id. Die Annotation des Primärschlüssels kann bei der Instanzvariablen oder bei Getter/ Setter-Paar stehen und definiert damit dem Zugriff der JPA-Implementierung auf das Property. Im unteren Beispiel mit Attribut matrikelnummer geschehen. (Vgl. Java-Persistence-API mit Hibernate S.32 Z. 5ff)
+Um ein Java-Objekt mittels Hibernate in einer relationalen Datenbank persistent zu verwalten, muss die Klasse des Objektes einige grundlegende Notationen befolgen. Zunächst muss die Klasse mit der Annotation @Entity versehen werden damit sie in Datenbank gemappt werden kann. „Die Annotation @Entity macht aus einer „normalen“ Klasse eine Klasse, deren Instanzen mit einer JPA-Implementierung persistent gemacht werden können.“(Java-Persistence-API mit Hibernate S.32 Z. 1-2) Welche Spalte der Primärschlüssel sein soll muss angegeben werden. Dies geschieht mit der Annotation @Id. Die Annotation des Primärschlüssels kann bei der Instanzvariablen oder bei Getter/ Setter-Paar stehen und definiert damit dem Zugriff der JPA-Implementierung auf das Property. Im unteren Beispiel mit Attribut Matrikelnummer geschehen. (Vgl. Java-Persistence-API mit Hibernate S.32 Z. 5ff)
 
 Die Attribute sind als privat deklariert, daher werden entsprechend der Java-Konventionen set/get-Methoden für jedes Attribut definiert, die auch von Hibernate so erwartet werden.(Datenbanken Konzepte und Sprachen S.454 Z.1-3) Zu beachten ist das Hibernate einen default Konstruktor erwartet, also einen Parameterfreien Konstruktor, welcher zwar bei keiner Angebe eines Konstruktors automatisch von Java mit initialisiert wird, aber nochmal explizit angegeben werden muss wenn ein weiterer Konstruktor vorhanden ist.
 
