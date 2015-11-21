@@ -86,9 +86,8 @@ public class StudentDAO {
 		return session;
 	}
 	
-	public void closeSessionAndTransaction() {
+	public void commitAndClose() {
 		transaction.commit();
-		session.close();
 	}
 	
 	public Session getSession(){
